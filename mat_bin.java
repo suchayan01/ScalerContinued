@@ -1,6 +1,6 @@
 public class mat_bin {
     public static  int searchMatrix(int[][] A, int B) {
-        int col=A[0].length-1;
+        int col=A[0].length-1,upper=-1;
         int left =0, right = A.length-1,mid=-1;
         while(left<=right){
             mid= left+(right-left)/2;
@@ -11,34 +11,41 @@ public class mat_bin {
             }
             else if (A[mid][col]>B){
                 right= mid-1;
+                upper=mid;
             }
             else {
                 left=mid+1;
+
             }
         }
         System.out.println("Row num: "+mid);
-        int upper=mid;
+//        int upper=mid;
         System.out.println("upper "+upper);
         System.out.println("------------------Lower---------------------");
         //find lower
         left =0;
         right=A.length-1;
+        int lower=-1;
         while(left<=right){
             mid= left+(right-left)/2;
 //            System.out.println(mid+"----"+col+"------"+A[mid][col]);
-            System.out.println(left+"-----"+right+"---"+mid+"-----"+A[mid][0]);
+            System.out.println(left+"-----"+right+"---"+mid+"-----"+A[mid][0]+"---"+B);
             if (A[mid][0]==B){
                 return 1;
             }
             else if (A[mid][0]>B){
                 right= mid-1;
+//                System.out.println("exceeded"+(mid)+"---"+left+"---"+right);
             }
             else {
                 left=mid+1;
+                System.out.println("lower"+(mid+1));
+                lower = mid;
             }
         }
-        int lower=mid;
-        System.out.println("lower "+lower);
+//        System.out.println(mid);
+//        lower=mid;
+//        System.out.println("lower "+lower);
         int row = Math.min(upper,lower);
         left=0;
         right=col;
